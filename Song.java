@@ -9,11 +9,6 @@
 
 
 
-
-
-
-
-
 public class Song {
    
    public static void main (String [] args) {
@@ -53,7 +48,7 @@ public class Song {
    {
       System.out.println("There was an old woman who swallowed a spider,");
       System.out.println("That wriggled and iggled and jiggled inside her.");
-      System.out.println("She swallowed the spider to catch the fly,");
+      catchFly();
       lastLines();
    }
    
@@ -61,8 +56,8 @@ public class Song {
    {
       System.out.println("There was an old woman who swallowed a bird,");
       System.out.println("How absurd to swallow a bird.");
-      System.out.println("She swallowed the bird to catch the spider,");
-      System.out.println("She swallowed the spider to catch the fly,");
+      catchSpider();
+      catchFly();
       lastLines();
    }
    
@@ -70,9 +65,9 @@ public class Song {
    {
       System.out.println("There was an old woman who swallowed a cat,");
       System.out.println("Imagine that to swallow a cat.");
-      System.out.println("She swallowed the cat to catch the bird,");
-      System.out.println("She swallowed the bird to catch the spider,");
-      System.out.println("She swallowed the spider to catch the fly,");
+      catchBird();
+      catchSpider();
+      catchFly();
       lastLines();
    }
    
@@ -80,22 +75,22 @@ public class Song {
    {
       System.out.println("There was an old woman who swallowed a dog,");
       System.out.println("What a hog to swallow a dog.");
-      System.out.println("She swallowed the dog to catch the cat,");
-      System.out.println("She swallowed the cat to catch the bird,");
-      System.out.println("She swallowed the bird to catch the spider,");
-      System.out.println("She swallowed the spider to catch the fly,");
+      catchCat();
+      catchBird();
+      catchSpider();
+      catchFly();
       lastLines();
    }
    
-   public static void sixthVerse() //prints the last verse of the song
+   public static void sixthVerse() //prints the sixth verse of the song
    {
       System.out.println("There was an old woman who swallowed a snake,");
       System.out.println("What a meal to undertake.");
-      System.out.println("She swallowed the snake to catch the dog,");
-      System.out.println("She swallowed the dog to catch the cat,");
-      System.out.println("She swallowed the cat to catch the bird,");
-      System.out.println("She swallowed the bird to catch the spider,");
-      System.out.println("She swallowed the spider to catch the fly,");
+      catchDog();
+      catchCat();
+      catchBird();
+      catchSpider();
+      catchFly();
       lastLines();
    }
    
@@ -112,10 +107,37 @@ public class Song {
    {
       System.out.println("I don't know why she swallowed that fly,");
       System.out.println("Perhaps she'll die.");
-      System.out.println(); //blank line to separate verses
+      System.out.println(""); //blank line to separate verses
    }
    
+   public static void catchDog() //prints the "to catch the dog" line
+   {
+      System.out.println("She swallowed the snake to catch the dog,");
+      
+   }
    
+   public static void catchCat() //prints the "to catch the cat" line
+   {
+      System.out.println("She swallowed the dog to catch the cat,");
+      
+   }
    
+   public static void catchBird() //prints the "to catch the bird" line
+   {
+      System.out.println("She swallowed the cat to catch the bird,");
+      
+   }
+   
+   public static void catchSpider() //prints the "to catch the spider" line
+   {
+      System.out.println("She swallowed the bird to catch the spider,");
+      
+   }
+   
+   public static void catchFly() //prints the "to catch the fly" line
+   {
+      System.out.println("She swallowed the spider to catch the fly,");
+      
+   }
    
 }
