@@ -48,6 +48,7 @@ public class Song {
       System.out.println("There was an old woman who swallowed a fly.");
       lastLines();
    }
+   
    public static void secondVerse() //prints the second verse of the song
    {
       System.out.println("There was an old woman who swallowed a spider,");
