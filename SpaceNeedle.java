@@ -15,11 +15,11 @@ public class SpaceNeedle {
    public static void main(String[] args ) {
       
       drawTop(); //top of needle
-      drawTopDome();
-      drawBottomDome();
-      drawTop();
-      drawMid();
-      drawTopDome();
+      drawTopDome(); //top half of dome 
+      drawBottomDome(); //bottom half of dome 
+      drawTop(); //draw top section again
+      drawMid(); // draw midsection of tower 
+      drawTopDome(); // draw top hlaf of dome again
       
    }
    
