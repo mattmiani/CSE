@@ -1,29 +1,36 @@
+// Matt Miani
+// CSE 142
+// TA: Aidan Hunt
+// 1/30/18
+
+// This program uses a Scanner to take in user input (a student's exam scores)
+// and calculates the student's overall grade in the course. Use of Math objects
+// was an important tool.
+
 import java.util.*;
-import java.lang.*;
 
 public class Gradanator {
-
-     public static final double MAX_D = 100.0;
-     public static final int MAX = 100; 
-
+   
+   public static final double MAX_D = 100.0;
+   public static final int MAX = 100;
+   
    public static void main (String [] args) {
       
       Scanner console = new Scanner(System.in);
-     
-
+      
+      
       
       double midtermGrade = midGrades(console);
-      double finalGrade = finalGrades(console);      
+      double finalGrade = finalGrades(console);
       double hwkGrade = homework(console);
       
-      calculate(midtermGrade, finalGrade, hwkGrade);      
+      calculate(midtermGrade, finalGrade, hwkGrade);
    }
    
    public static final double midGrades(Scanner console) {
       
-      double endWeight = 0.0;
-      double endScore = 0.0;
-      double totalGrade = 0.0;
+      int endWeight = 0;
+      int endScore = 0;
       
       System.out.println("This program reads exam//homework scores");
       System.out.println("and reports your overall course grade");
@@ -47,25 +54,22 @@ public class Gradanator {
       
       if (console.nextInt()==1) {
          System.out.print("Shift amount? ");
-         endScore=Math.min(MAX, endScore+console.nextInt() );               
+         endScore=Math.min(MAX, endScore+console.nextInt() );
       }
       
       System.out.println("Total points: " + endScore + " / 100");
       
-      double calcWeight = (endScore*(endWeight/MAX_D)); 
+      double calcWeight = (endScore*(endWeight/MAX_D));
       
       System.out.printf("Weighted score = %.1f / " + weight +"\n", calcWeight);
       
-      totalGrade+= calcWeight;
-      
-      return totalGrade;     
+      return calcWeight;
    }
    
    public static final double finalGrades(Scanner console) {
       
       int endWeight = 0;
       int endScore = 0;
-      int totalGrade = 0;
       
       System.out.println();
       
@@ -75,7 +79,7 @@ public class Gradanator {
       
       int weight = console.nextInt();
       endWeight+=weight;
-        
+      
       System.out.print("Score earned? ");
       
       int score = console.nextInt();
@@ -86,19 +90,17 @@ public class Gradanator {
       
       if (console.nextInt()==1) {
          System.out.print("Shift amount? ");
-         endScore=Math.min(MAX, endScore+console.nextInt() );        
-       
+         endScore=Math.min(MAX, endScore+console.nextInt() );
+         
       }
       
       System.out.println("Total points: " + endScore + " / 100");
       
-     double calcWeight = (endScore*(endWeight/MAX_D));
+      double calcWeight = (endScore*(endWeight/MAX_D));
       
       System.out.printf("Weighted score = %.1f / " + weight + "\n", calcWeight);
       
-      totalGrade+= calcWeight;
-      
-      return totalGrade;
+      return calcWeight;
    }
    
    
@@ -124,12 +126,12 @@ public class Gradanator {
          hwkScore += console.nextInt();
          hwkMax+= console.nextInt();
       }
-            
+      
       System.out.print("How many sections did you attend? ");
       
       sections = Math.min(30, console.nextInt()*5);
       
-      int totalPoints = Math.min(hwkMax+30, sections+hwkScore); 
+      int totalPoints = Math.min(hwkMax+30, sections+hwkScore);
       
       System.out.println("Section points = " + sections + " / 30");
       System.out.println("Total points = " + totalPoints + " / " + (hwkMax + 30) );
@@ -146,7 +148,7 @@ public class Gradanator {
       
       double grade = grade1+grade2+grade3;
       
-      System.out.println(); 
+      System.out.println();
       System.out.printf("Overall percentage = %.1f \n" , grade);
       
       if (grade>=85.0) {
