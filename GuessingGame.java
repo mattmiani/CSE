@@ -6,58 +6,92 @@
 //This program prompts the user to guess a randomly generated number.
 //It records the number of total guesses, the guesses per game,
 //and the game with the lowest number of guesses.
-//While() loops and conditional statements were important parts of this program.
 
 import java.util.*;
 
 public class GuessingGame {
    
-   public static int gamesPlayed = 0;
-   public static int whichGame = 0;
+   public static int gamesPlayed_I = 0; //number of games played (for reporting) 
+   public static double gamesPlayed_D = 0;  //number of games played (for statistics math) 
    
+   public static int whichGame = 0; //which game is currently being played (1, 2, etc) 
    
-   public static int totalGuesses = 0;
+   public static int totalGuesses_I = 0;//total number of guesses across all games (for reporting)
+   public static double totalGuesses_D = 0.0;  //number of guesses (for stats math)
    
-   public static int firstGuesses = 0;
-   public static int currentGuesses = 0;
+   public static int firstGuesses = 0; //number of guesses for the first game 
+   public static int currentGuesses = 0; //number of guesses for the current game 
    
-   public static int best = 0;
+   public static int best = 0; //which game was the best
+   
+   public static int range = 100; //range of numbers to guess from 
    
    public static void main (String [] args) {
       
       Scanner console = new Scanner(System.in);
       
+      prompt(); 
       guess(console);
       
       
    }
    
+   public static void prompt(){ 
+      System.out.println("Why, hello, user."); 
+      System.out.println("Would you like to play a game?"); 
+      System.out.println("Try to think like me.");
+      } 
+   
    
    public static void guess (Scanner console) {
-      
-      gamesPlayed++;
+     
+      gamesPlayed_I++; //add one to number of games played 
+      gamesPlayed_D++; 
       Random r = new Random();
       
       
-      int target = r.nextInt(100) + 1;
+      int target = r.nextInt(range) + 1;
       
       int guesses = 0;
       
       int guess = 0;
       
+      int firstGuess = 0; //first guess
+      
       //print out target for testing
       //	System.out.println(target);
-      System.out.println("I'm thinking of a number between 1 and 100...");
+      System.out.println(); 
+      System.out.println("I'm thinking of a number between 1 and " + range+ "...");
       System.out.print("Your guess? ");
+      
+      firstGuess+=console.nextInt(); 
+      
+      if (firstGuess==target){ 
+         System.out.println("You got it right in 1 guess!"); 
+         playAgain(console); 
+         } 
+      else if (firstGuess>target) { 
+      System.out.println("It's lower."); 
+      System.out.print("Your guess? "); 
+      totalGuesses_I++;
+      totalGuesses_D++; 
+      guesses++; 
+      } 
+      else if (firstGuess<target) { 
+      System.out.println("It's higher.");
+      System.out.print("Your guess? ");  
+      totalGuesses_I++; 
+      totalGuesses_D++; 
+      guesses++; 
+      } 
       
       
       while (guess!=target) {
          guess= 0; //initialize guess at the beginning of the loop
          
-         
-         
          guesses++; //add one to guess counter (for that game)
-         totalGuesses++; //add one to TOTAL number of guesses
+         totalGuesses_I++; //add one to TOTAL number of guesses
+         totalGuesses_D++; 
          
          guess+=console.nextInt();
          
@@ -70,9 +104,9 @@ public class GuessingGame {
          System.out.print("Your guess? ");
          
       }
-      whichGame++; //add one to number of games played
-      
-      if (gamesPlayed == 1) {
+      whichGame++; //keep track of which game is being played 
+            
+      if (gamesPlayed_I == 1) {    //if the first game is being played 
          firstGuesses+=guesses;
          best = 1;
          //the best game will be the first one
@@ -82,7 +116,7 @@ public class GuessingGame {
          //the first comparison will be between the first number of guesses and the second
          //and whichGame will be the game currently being played
       }
-      
+     
       //asks player if they want to play again
       System.out.println();
       System.out.println("You got it right in " + guesses + " guesses!");
@@ -108,15 +142,14 @@ public class GuessingGame {
    }
    
    public static void stats() {
+      System.out.println(); 
       System.out.println("Overall results:");
-      System.out.println("Total games   = " + gamesPlayed);
-      System.out.println("Total guesses = " + totalGuesses);
-      System.out.println("Guesses/game  = " + totalGuesses/gamesPlayed);
+      System.out.println("Total games   = " + gamesPlayed_I);
+      System.out.println("Total guesses = " + totalGuesses_I);
+      System.out.println("Guesses/game  = " + totalGuesses_D/gamesPlayed_D);
       System.out.println("Best game     = " + best);
       
    }
-   
-   
    
    //guesses1 = previous lowest number of guesses
    //guesses2 = number of guesses from the current game
@@ -125,7 +158,7 @@ public class GuessingGame {
    //start checking on the second time through
    
    //if gamesPlayed>2, check the lowest against the current (start running the method)
-   //for the first time, lowest=current
+   //for the first time, only one number of guesses and nothing to compare to 
    
    
    //method is checking if the number of guesses associated with currentGame
