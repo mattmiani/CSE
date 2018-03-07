@@ -1,3 +1,12 @@
+//Matt Miani
+//CSE 142
+//TA: Aidan Hunt
+//Hippo class for Critter simulation. Moves in a random direction for
+//five turns, then picks a new direction.
+//Constructed with an integer telling it how many times to eat food;
+//will stop eating food after the requisite number of times.
+//Fighting behavior depends on hunger level.
+
 import java.awt.*;
 import java.util.*;
 
@@ -17,12 +26,13 @@ public class Hippo extends Critter {
    
    public Direction dir;
    
-   public Color color = Color.GRAY; 
+   public Color color = Color.GRAY;
    
    public int random;
    
    Random r = new Random();
    
+   //constructor, takes integer for hunger level
    public Hippo (int hunger) {
       
       hunger = hunger;
@@ -30,7 +40,9 @@ public class Hippo extends Critter {
       limit = hunger;
       
    }
-   
+   //eats for a certain number of turns depending on the constructor
+   //integer value.
+   //eating also controls fighting and color behavior
    public boolean eat() {
       timesEaten--;
       if (timesEaten>0){
@@ -46,8 +58,9 @@ public class Hippo extends Critter {
          return false;
       }
    }
+   
    public Color getColor() {
-      return color;       
+      return color;
    }
    
    
@@ -58,7 +71,7 @@ public class Hippo extends Critter {
    public Attack fight(String opponent) {
       return fight;
    }
-   
+   //moves in a random direction for 5 moves
    public Direction getMove(){
       moves++;
       
