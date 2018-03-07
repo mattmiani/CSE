@@ -1,7 +1,7 @@
 //Matt Miani 
 //CSE 142
 //TA: Aidan Hunt 
-//
+//Custom class for Critter tournament. 
 
 import java.util.*; 
 import java.awt.*; 
@@ -81,7 +81,7 @@ public int pretend;
          return true; 
          } 
         } 
-             public Attack fight(String opponent) { 
+       public Attack fight(String opponent) { 
          
          switch(symbol) { 
     
