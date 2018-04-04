@@ -88,7 +88,7 @@ public class LetterInventory {
    public String toString() {
       
       String result = "";
-      if (sum<=0){
+      if (sum<0){
          return "[]";
       }
       result+=("[");
@@ -124,12 +124,15 @@ public class LetterInventory {
    //pre: a real LetterInventory object is passed as a parameter (will not compile otherwise)
    //post: similar to add()
    //creates a new LetterInventory object newLetters where newLetters.letters[i]
-   //is the difference of other.letters[i] and letters[i] of the object that add() is called on
+   //is the difference of other.letters[i] and letters[i] of the object that subtract() is called on
    public LetterInventory subtract(LetterInventory other) {
       LetterInventory newLetters = new LetterInventory("");
       
       for (int i = 0; i<size; i++) {
          newLetters.letters[i] = this.letters[i] - other.letters[i];
+         if(newLetters.letters[i]<0) {
+            return null;
+         }
       }
       newLetters.sum = this.size() - other.size();
       if(newLetters.sum<0) {
