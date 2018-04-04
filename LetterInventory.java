@@ -7,8 +7,8 @@
 
 public class LetterInventory {
    
-   private int size = 26; //size of list
-   private int[] letters = new int[size]; //list of letter counts
+   private static final int SIZE = 26; //size of list
+   private int[] letters = new int[SIZE]; //list of letter counts
    private int sum; //total sum of all letter counts
    private static final int START = 97; //beginning of ASCII values for lowercase alphabet
    private static final int END = 122; //end of ASCII values for lowercase alphabet
@@ -93,7 +93,7 @@ public class LetterInventory {
       }
       result+=("[");
       
-      for (int i = 0; i<size; i++){
+      for (int i = 0; i<SIZE; i++){
          
          for (int j=0; j<letters[i]; j++) {
             
@@ -114,7 +114,7 @@ public class LetterInventory {
    public LetterInventory add(LetterInventory other) {
       LetterInventory newLetters = new LetterInventory("");
       
-      for (int i = 0; i<size; i++) {
+      for (int i = 0; i<SIZE; i++) {
          newLetters.letters[i] = this.letters[i] + other.letters[i];
       }
       newLetters.sum = this.size() + other.size();
@@ -128,17 +128,13 @@ public class LetterInventory {
    public LetterInventory subtract(LetterInventory other) {
       LetterInventory newLetters = new LetterInventory("");
       
-      for (int i = 0; i<size; i++) {
+      for (int i = 0; i<SIZE; i++) {
          newLetters.letters[i] = this.letters[i] - other.letters[i];
          if(newLetters.letters[i]<0) {
             return null;
          }
       }
       newLetters.sum = this.size() - other.size();
-      if(newLetters.sum<0) {
-         return null;
-      } else {
-         return newLetters;
-      }
+      return newLetters; 
    }
 }
