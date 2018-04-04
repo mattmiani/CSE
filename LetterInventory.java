@@ -20,14 +20,14 @@ public class LetterInventory {
    //the total sum of letter counts is incremented for every letter in the string
    public LetterInventory (String data) {
       
-      data=data.toLowerCase();
+      String lowerCaseData=data.toLowerCase();
       
-      for (int i=0; i<data.length(); i++){
-         char a = data.charAt(i);
+      for (int i=0; i<lowerCaseData.length(); i++){
+         char thisChar = lowerCaseData.charAt(i);
          
-         for (char c = 'a'; c<= 'z'; c++) {
-            if (a==(c)) {
-               letters[a-START]++;
+         for (char testChar = 'a'; testChar<= 'z'; testChar++) {
+            if (thisChar==(testChar)) {
+               letters[thisChar-START]++;
                sum++;
             }
          }
@@ -46,19 +46,16 @@ public class LetterInventory {
       }
       int target = indexOf(letter);
       sum += (value- get(letter));
-               letters[target] = value;
+      letters[target] = value;
    }
    //pre: letter is an alphabetic character(case insensitve); throws IllegalArgumentException if not
    //post: returns count of letters at the specified index
    //example: if letters[0]=12, then get('a') would return a value of 12
    public int get (char letter) {
       
-      letter = Character.toLowerCase(letter);
-      int test = (int)(letter);
+      int test = (int)(Character.toLowerCase(letter));
       
-      if (test<START || test>END) {
-         throw new IllegalArgumentException();
-      }
+      validIndex(test);
       return letters[test-START];
       
    }
@@ -71,14 +68,17 @@ public class LetterInventory {
       
       letter = Character.toLowerCase(letter);
       int test = (int)(letter);
+      validIndex(test);
+      return test-START;
+      
+   }
+   private void validIndex(int test) {
       if (test<START || test>END) {
          throw new IllegalArgumentException();
       }
       
-      return test-START;
       
    }
-   
    //post: evaluates whether or not the entire inventory is empty (all counts are 0)
    public boolean isEmpty() {
       return (sum==0);
@@ -88,9 +88,9 @@ public class LetterInventory {
    public String toString() {
       
       String result = "";
-      if (sum<=0){ 
-         return "[]"; 
-         } 
+      if (sum<=0){
+         return "[]";
+      }
       result+=("[");
       
       for (int i = 0; i<size; i++){
@@ -124,21 +124,18 @@ public class LetterInventory {
    //pre: a real LetterInventory object is passed as a parameter (will not compile otherwise)
    //post: similar to add()
    //creates a new LetterInventory object newLetters where newLetters.letters[i]
-   //is the difference of other.letters[i] and letters[i] of the object that add() is called on         
-    public LetterInventory subtract(LetterInventory other) {
+   //is the difference of other.letters[i] and letters[i] of the object that add() is called on
+   public LetterInventory subtract(LetterInventory other) {
       LetterInventory newLetters = new LetterInventory("");
       
       for (int i = 0; i<size; i++) {
          newLetters.letters[i] = this.letters[i] - other.letters[i];
       }
       newLetters.sum = this.size() - other.size();
-      if(newLetters.sum<0) { 
-         return null; 
-         } else { 
-      return newLetters;
-      } 
+      if(newLetters.sum<0) {
+         return null;
+      } else {
+         return newLetters;
+      }
    }
 }
-
-
-
